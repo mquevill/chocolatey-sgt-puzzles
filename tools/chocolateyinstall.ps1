@@ -2,7 +2,7 @@
 
 $packageName  = 'sgt-puzzles'
 $toolsDir     = "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)"
-$fileLocation = Join-Path $toolsDir 'puzzles-20181213.ced51ad-installer.msi'
+$fileLocation = Join-Path $toolsDir 'puzzles-20190126.d7c8733-installer.msi'
 
 $packageArgs = @{
   packageName   = $packageName
@@ -13,7 +13,7 @@ $packageArgs = @{
   validExitCodes= @(0)
 
   softwareName  = 'sgt-puzzles*'
-  checksum      = '82B18B08585C71B010B9144B0BFC330266DE2CE2E39A15A5AAD4B3270C2DE9EAE66F8DCF76F5064F5F9C2D1F3BFCA783AA3E959E8F5A3D28DF00F26827C2C52F'
+  checksum      = '1A0D6D043D5DB53CA4206A5F6A54C2F39927494E12C62D2577B9D3E6562BA82BF8FFA235ABCBC325277CFC595B37FA259F3C0FE8F817A36FFBF9B4F53A23FF98'
   checksumType  = 'sha512'
 }
 
