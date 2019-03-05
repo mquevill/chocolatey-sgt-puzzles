@@ -25,10 +25,10 @@ $version = $vnum.Insert(4,'.').Insert(7,'.')
 
 #Update tools/VERIFICATION.txt with checksum
 $csum = (checksum -t=sha512 .\tools\$fname)
-(Get-Content .\tools\VERIFICATION.txt.skel).replace('NUMNUMNUM', $csum).replace('FILEFILEFILE', $fname) | Set-Content .\tools\VERIFICATION.txt
+(Get-Content .\tools\VERIFICATION.txt.skel).replace('NUMNUMNUM', $csum) | Set-Content .\tools\VERIFICATION.txt
 
 #Update tools/chocolateyinstall.ps1 with filename and checksum
-(Get-Content .\tools\chocolateyinstall.ps1.skel).replace('NUMNUMNUM', $csum) | Set-Content .\tools\chocolateyinstall.ps1
+(Get-Content .\tools\chocolateyinstall.ps1.skel).replace('NUMNUMNUM', $csum).replace('FILEFILEFILE', $fname) | Set-Content .\tools\chocolateyinstall.ps1
 
 #Package and push to Chocolatey
 cpack $pkg.nuspec
