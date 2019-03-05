@@ -23,6 +23,6 @@
     <releaseNotes>https://git.tartarus.org/?p=simon/puzzles.git</releaseNotes>
   </metadata>
   <files>
-    <file src="tools\**" target="tools" />
+    <file src="tools\**" target="tools" exclude="**\*.skel"/>
   </files>
 </package>
