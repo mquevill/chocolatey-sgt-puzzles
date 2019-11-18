@@ -1,7 +1,3 @@
-Download new installer to tools/ from https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-installer.msi
-Change version number in sgt-puzzles.nuspec
-Calculate sha512 checksum
-Update tools/VERIFICATION.txt with checksum
-Update tools/chocolateyinstall.ps1 with filename and checksum
-Package it all together
-Push it to Chocolatey
+1. Download new installer to tools/ from https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-installer.msi
+2. Delete files from old version
+3. Run .\run.ps1, which will build the package and push it to Chocolatey
