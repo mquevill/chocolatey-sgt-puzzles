@@ -32,7 +32,7 @@ $csum = (checksum -t=sha512 .\tools\$fname)
 
 #Package and push to Chocolatey
 cpack $pkg.nuspec
-cpush $pkg.$version.nupkg
+cpush .\$pkg.$version.nupkg
 
 #Clean up
 rm sgt-puzzles.nuspec,tools\VERIFICATION.txt,tools\chocolateyinstall.ps1
