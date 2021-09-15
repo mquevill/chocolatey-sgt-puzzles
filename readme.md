@@ -1,7 +1,7 @@
-# chocolatey-sgt-puzzles
-Source files of Chocolately package for sgt-puzzles (Simon Tatham's Portable Puzzle Collection)
+# Chocolatey-SGT-Puzzles
+Source files of Chocolatey package for sgt-puzzles (Simon Tatham's Portable Puzzle Collection)
 
-To build and push the package, simply run `run.ps1`.
+To build and push the package, simply run `run.ps1`:
 ```powershell
 .\run.ps1
 ```
