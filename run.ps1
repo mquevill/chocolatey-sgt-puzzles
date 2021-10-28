@@ -1,9 +1,8 @@
 Function Get-RedirectedUrl {
 	Param (
-		[Parameter(Mandatory=$true)]
-		[String]$URL
+		[Parameter(Mandatory=$true)] [String] $URL
 	)
-	$request = [System.Net.WebRequest]::Create($url)
+	$request = [System.Net.WebRequest]::Create($URL)
 	$request.AllowAutoRedirect=$false
 	$response=$request.GetResponse()
 	If ($response.StatusCode -eq "Found")
