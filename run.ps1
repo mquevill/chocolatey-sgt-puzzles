@@ -13,18 +13,17 @@ Function Get-RedirectedUrl {
 }
 
 # Download newest version and get version number
-$pkg = "sgt-puzzles"
-$url = "https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-installer.msi"
-$fname = ([System.IO.Path]::GetFileName((Get-RedirectedUrl $url)))
+[String] $pkg = "sgt-puzzles"
+[String] $url = "https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-installer.msi"
+[String] $fname = ([System.IO.Path]::GetFileName((Get-RedirectedUrl $url)))
 Invoke-WebRequest -uri $url -Outfile ".\tools\$fname"
-$vnum = $fname.split('.-')[1]
-$version = $vnum.Insert(4,'.').Insert(7,'.')
+[Version] $version = $fname.split('.-')[1].Insert(4,'.').Insert(7,'.')
 
 #Update sgt-puzzles.nuspec with version number
 (Get-Content .\$pkg.nuspec.skel).replace('VERVERVER', $version) | Set-Content .\$pkg.nuspec
 
 #Update tools/VERIFICATION.txt with checksum
-$csum = (checksum -t=sha512 .\tools\$fname)
+[String] $csum = (checksum -t=sha512 .\tools\$fname)
 (Get-Content .\tools\VERIFICATION.txt.skel).replace('NUMNUMNUM', $csum) | Set-Content .\tools\VERIFICATION.txt
 
 #Update tools/chocolateyinstall.ps1 with filename and checksum
