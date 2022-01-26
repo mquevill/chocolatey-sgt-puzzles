@@ -17,9 +17,10 @@ Function Get-RedirectedUrl {
 [String] $fname = ([System.IO.Path]::GetFileName((Get-RedirectedUrl $url)))
 Invoke-WebRequest -uri $url -Outfile ".\tools\$fname"
 [Version] $version = $fname.split('.-')[1].Insert(4,'.').Insert(7,'.')
+[String] $version_str = "{0:0000}.{1:00}.{2:00}" -f $version.Major, $version.Minor, $version.Build
 
 #Update sgt-puzzles.nuspec with version number
-(Get-Content .\$pkg.nuspec.skel).replace('VERVERVER', $version) | Set-Content .\$pkg.nuspec
+(Get-Content .\$pkg.nuspec.skel).replace('VERVERVER', $version_str) | Set-Content .\$pkg.nuspec
 
 #Update tools/VERIFICATION.txt with checksum
 [String] $csum = (checksum -t=sha512 .\tools\$fname)
@@ -30,7 +31,7 @@ Invoke-WebRequest -uri $url -Outfile ".\tools\$fname"
 
 #Package and push to Chocolatey
 cpack $pkg.nuspec
-cpush .\$pkg.$version.nupkg
+cpush .\$pkg.$version_str.nupkg
 
 #Clean up
 rm sgt-puzzles.nuspec,tools\VERIFICATION.txt,tools\chocolateyinstall.ps1
