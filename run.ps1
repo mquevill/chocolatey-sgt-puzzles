@@ -30,8 +30,12 @@ Invoke-WebRequest -uri $url -Outfile ".\tools\$fname"
 (Get-Content .\tools\chocolateyinstall.ps1.skel).replace('NUMNUMNUM', $csum).replace('FILEFILEFILE', $fname) | Set-Content .\tools\chocolateyinstall.ps1
 
 #Package and push to Chocolatey
-cpack $pkg.nuspec
-cpush .\$pkg.$version_str.nupkg
+#cpack $pkg.nuspec
+#cpush .\$pkg.$version_str.nupkg
 
 #Clean up
 rm sgt-puzzles.nuspec,tools\VERIFICATION.txt,tools\chocolateyinstall.ps1
+
+#Print commit message
+echo "Update to v$version_str"
+
