@@ -5,7 +5,7 @@ Function Get-RedirectedUrl {
 	$request = [System.Net.WebRequest]::Create($URL)
 	$request.AllowAutoRedirect=$false
 	$response=$request.GetResponse()
-	If ($response.StatusCode -eq "Found")
+	If ($response.StatusCode -eq "Redirect")
 	{
 		$response.GetResponseHeader("Location")
 	}
@@ -14,6 +14,7 @@ Function Get-RedirectedUrl {
 # Download newest version and get version number
 [String] $pkg = "sgt-puzzles"
 [String] $url = "https://www.chiark.greenend.org.uk/~sgtatham/puzzles/puzzles-installer.msi"
+#[String] $fname = "puzzles-20230224.9dbcfa7-installer.msi" # hard-coded
 [String] $fname = ([System.IO.Path]::GetFileName((Get-RedirectedUrl $url)))
 Invoke-WebRequest -uri $url -Outfile ".\tools\$fname"
 [Version] $version = $fname.split('.-')[1].Insert(4,'.').Insert(7,'.')
@@ -30,8 +31,8 @@ Invoke-WebRequest -uri $url -Outfile ".\tools\$fname"
 (Get-Content .\tools\chocolateyinstall.ps1.skel).replace('NUMNUMNUM', $csum).replace('FILEFILEFILE', $fname) | Set-Content .\tools\chocolateyinstall.ps1
 
 #Package and push to Chocolatey
-#cpack $pkg.nuspec
-#cpush .\$pkg.$version_str.nupkg
+cpack $pkg.nuspec
+cpush .\$pkg.$version_str.nupkg
 
 #Clean up
 rm sgt-puzzles.nuspec,tools\VERIFICATION.txt,tools\chocolateyinstall.ps1
